@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
 body{
     margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .bg-img{
@@ -137,7 +140,7 @@ body{
 
     .todo-container{
         margin: 0 auto;
-        width: 80vw;
+        width: 90vw;
         transform: translateY(-220px);
 
     }
@@ -166,7 +169,7 @@ body{
 @media screen and (max-width: 380px) {
     .todo-container{
         margin: 0 auto;
-        width: 85vw;
+        width: 90vw;
         transform: translateY(-220px);
     }
 

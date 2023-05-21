@@ -74,12 +74,22 @@ body{
     background-color: white;
     box-shadow: 20px 0px 100px rgb(136, 135, 135);
     border-radius: 5px;
+    padding: 0 30px;
+    box-sizing: border-box;
 }
 
-.todo-list-content ul li{
+.todo-list-content ul li {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
-}
+  }
+  
+  .todo-list-content ul li img {
+    object-fit: contain;
+    cursor: pointer;
+  }
+  
 
 .todo-list-content ul li input[type = "checkbox"]{
     display: none;
@@ -94,7 +104,7 @@ body{
     border-color: gray;
     position: absolute;
     left: -32px;
-    bottom: 20px;
+    bottom: 13px;
     cursor: pointer;
 }
 

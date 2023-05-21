@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App Main</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <div class="bg-img"></div>
+    <div class="todo-container">
+      <div class="todo-header">
+        <h1>TODO</h1>
+        <img src="images/icon-moon.svg" alt="icon-moon" />
+      </div>
+      <div class="todo-input-container">
+        <input type="text" placeholder="Create a new todo..." id="todo-input" />
+        <input type="checkbox" id="addTodo" />
+        <label for="addTodo"></label>
+      </div>
+      <div class="todo-list-content">
+        <ul>
+          <li>
+            <input type="checkbox" />
+            <label></label>
+            <h4>Complete Javascript Online 1</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label></label>
+            <h4>Complete Javascript Online 2</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label></label>
+            <h4>Complete Javascript Online 3</h4>
+          </li>
+        </ul>
+        <div class="todo-footer">
+          <p>5 items left</p>
+          <div class="todo-footer-container">
+            <p>All</p>
+            <p>Active</p>
+            <p>Completed</p>
+          </div>
+          <p>Clear Completed</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

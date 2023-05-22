@@ -41,6 +41,43 @@ completedBtn.forEach((btn)=>{
 })
 
 // FUNCTION SECTION
+document.addEventListener("DOMContentLoaded", function() {
+  // Retrieve todo list from local storage
+  const savedList = JSON.parse(localStorage.getItem("todoList"));
+
+  if (savedList) {
+    // Iterate over the saved list items
+    savedList.forEach(function(item) {
+      // Create a temporary container element
+      var tempContainer = document.createElement("div");
+      tempContainer.innerHTML = item;
+
+      // Get the first child of the container, which is the li element
+      var li = tempContainer.firstChild;
+
+      // Attach event listeners to the label and image within the li element
+      var label = li.querySelector("label");
+      var img = li.querySelector("img");
+
+      label.addEventListener("click", function(e) {
+        const crossedText = e.target.nextElementSibling;
+        e.target.classList.toggle("checked");
+        crossedText.classList.toggle("underline");
+        updateLocalStorage();
+      });
+
+      img.addEventListener("click", function(e) {
+        var getParentElement = e.target.parentElement;
+        getParentElement.remove();
+        updateLocalStorage();
+      });
+
+      // Append the li element to the todoListUl
+      todoListUl.appendChild(li);
+    });
+  }
+});
+
 function addToDoList() {
   var li = document.createElement("li");
   var inputCheckbox = document.createElement("input");
@@ -64,11 +101,22 @@ function addToDoList() {
     const crossedText = e.target.nextElementSibling;
     e.target.classList.toggle("checked");
     crossedText.classList.toggle("underline");
+    updateLocalStorage();
   });
 
-  img.addEventListener("click", (e)=>{
-    var getParentElement;
-    getParentElement = e.target.parentElement;
+  img.addEventListener("click", (e) => {
+    var getParentElement = e.target.parentElement;
     getParentElement.remove();
-  })
+    updateLocalStorage();
+  });
+
+  updateLocalStorage();
+}
+
+function updateLocalStorage() {
+  const todoListItems = Array.from(todoListUl.children);
+  const todoListArray = todoListItems.map(function(item) {
+    return item.outerHTML;
+  });
+  localStorage.setItem("todoList", JSON.stringify(todoListArray));
 }

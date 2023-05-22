@@ -104,7 +104,7 @@ body{
     border-color: gray;
     position: absolute;
     left: -32px;
-    bottom: 13px;
+    bottom: 19px;
     cursor: pointer;
 }
 
@@ -120,14 +120,14 @@ body{
 .todo-footer{
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 7px;
 }
 
 
 .todo-footer-container{
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 12px;
 }
 
 .todo-footer p{
@@ -167,7 +167,7 @@ body{
         box-shadow: 20px 0px 100px rgb(136, 135, 135);
         width: 100%;
         border-radius: 5px;
-        padding-left: 30px;
+        padding: 0 20px;
     }
   
     .todo-footer p {
@@ -181,6 +181,17 @@ body{
         margin: 0 auto;
         width: 90vw;
         transform: translateY(-220px);
+    }
+
+    .todo-footer-container{
+        order: 2;
+        margin-top: 70px; /* Adjust the negative margin-top value as needed */
+        margin-bottom: -70px; /*Add margin-bottom to compensate for the negative margin */
+        background-color: white;
+        box-shadow: 20px 0px 100px rgb(136, 135, 135);
+        width: 100%;
+        border-radius: 5px;
+        padding: 0 0;
     }
 
 }

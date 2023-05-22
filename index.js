@@ -13,8 +13,24 @@ addToTodoBtn.addEventListener("click", () => {
   setTimeout(() => {
     addToTodoBtn.checked = false;
     getTodoInput.value = "";
-  }, 1000);
+  }, 200);
 });
+
+getTodoInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault(); // Prevent form submission (if any)
+    if (getTodoInput.value === "") {
+      alert("Can't Add Empty Item To List!!");
+    } else {
+      addToDoList();
+    }
+    setTimeout(() => {
+      addToTodoBtn.checked = false;
+      getTodoInput.value = "";
+    }, 200);
+  }
+});
+
 
 completedBtn.forEach((btn)=>{
   btn.addEventListener("click", (e)=>{
@@ -49,4 +65,10 @@ function addToDoList() {
     e.target.classList.toggle("checked");
     crossedText.classList.toggle("underline");
   });
+
+  img.addEventListener("click", (e)=>{
+    var getParentElement;
+    getParentElement = e.target.parentElement;
+    getParentElement.remove();
+  })
 }

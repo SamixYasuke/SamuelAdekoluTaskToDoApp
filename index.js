@@ -1,6 +1,7 @@
 const getTodoInput = document.querySelector("#todo-input");
 const addToTodoBtn = document.querySelector("#addTodo");
 const completedBtn = Array.from(document.querySelectorAll(".todo-list-content ul li label"));
+const itemsLeft = document.querySelector(".todo-footer a");
 const todoListUl = document.querySelector("ul");
 
 addToTodoBtn.addEventListener("click", () => {
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
       todoListUl.appendChild(li);
     });
   }
+  updateItemsLeft();
 });
 
 function addToDoList() {
@@ -119,4 +121,19 @@ function updateLocalStorage() {
     return item.outerHTML;
   });
   localStorage.setItem("todoList", JSON.stringify(todoListArray));
+}
+
+
+function updateItemsLeft() {
+  const todoItems = Array.from(todoListUl.children);
+  const uncheckedItems = todoItems.filter(function(item) {
+    const checkbox = item.querySelector("input[type='checkbox']");
+    return !checkbox.checked;
+  });
+  const itemsLeft = uncheckedItems.length;
+
+  const itemsLeftElement = document.querySelector(".todo-footer a");
+  if (itemsLeftElement) {
+    itemsLeftElement.textContent = `${itemsLeft.toString()} items left`;
+  }
 }

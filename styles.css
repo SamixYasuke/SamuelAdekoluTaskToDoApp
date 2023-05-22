@@ -120,22 +120,23 @@ body{
 .todo-footer{
     display: flex;
     justify-content: space-between;
-    padding: 7px;
+    padding: 5px;
 }
 
 
 .todo-footer-container{
     display: flex;
     justify-content: space-between;
-    gap: 12px;
+    gap: 13px;
 }
 
-.todo-footer p{
+.todo-footer a{
+    text-decoration: none;
     cursor: pointer;
     color: gray;
 }
 
-.todo-footer p:hover{
+.todo-footer a:hover{
     color: black;
 }
 

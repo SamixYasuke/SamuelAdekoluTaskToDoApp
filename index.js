@@ -1,80 +1,52 @@
+const getTodoInput = document.querySelector("#todo-input");
+const addToTodoBtn = document.querySelector("#addTodo");
 const completedBtn = Array.from(document.querySelectorAll(".todo-list-content ul li label"));
-const todoInput = document.getElementById("todo-input");
-const addTodoBtn = document.getElementById("addTodo");
-const todolistContainer = document.querySelector(".todo-list-content ul");
-const removeListBtn = document.querySelectorAll(".todo-list-content ul li img");
+const todoListUl = document.querySelector("ul");
+
+addToTodoBtn.addEventListener("click", () => {
+  if (getTodoInput.value === "") {
+    addToTodoBtn.checked = false;
+    alert("Can't Add Empty Item To List!!");
+  } else {
+    addToDoList();
+  }
+  setTimeout(() => {
+    addToTodoBtn.checked = false;
+    getTodoInput.value = "";
+  }, 1000);
+});
 
 completedBtn.forEach((btn)=>{
-    btn.addEventListener("click", (e)=>{
-        const target = e.target;
-        btn.classList.toggle("checked");
-        const todoContent = target.nextElementSibling;
-        todoContent.classList.toggle("underline")
-    });
-});
-
-addTodoBtn.addEventListener("click", () => {
-    const input = todoInput.value;
-    if (input === "") {
-      alert("The Input Can't be empty");
-      addTodoBtn.checked = false;
-    } else {
-      var li = document.createElement("li");
-      var checkBoxInput = document.createElement("input");
-      var p = document.createElement("p");
-      var label = document.createElement("label");
-      var image = document.createElement("img");
-      image.setAttribute("src", "images/icon-cross.svg");
-      checkBoxInput.setAttribute("type", "checkbox");
-      p.textContent = input;
-      li.appendChild(checkBoxInput);
-      li.appendChild(label);
-      li.appendChild(p);
-      li.appendChild(image)
-      todolistContainer.appendChild(li);
-      saveTodoListItems();
-    }
-    setTimeout(() => {
-      todoInput.value = "";
-      addTodoBtn.checked = false;
-    }, 1000);
-});
-
-
-removeListBtn.forEach((btn)=>{
-    btn.addEventListener("click", (e)=>{
-        e.target.parentElement.remove();
-        saveTodoListItems();
-    });
+  btn.addEventListener("click", (e)=>{
+    btn.classList.toggle("checked");
+    const sibling = e.target.nextElementSibling;
+    sibling.classList.toggle("underline")
+  })
 })
-  
-function saveTodoListItems() {
-    const todoItems = Array.from(todolistContainer.querySelectorAll("li")).map((li) => {
-      return {
-        checked: li.querySelector("input").checked,
-        text: li.querySelector("p").textContent
-      };
-    });
-    localStorage.setItem("todoListItems", JSON.stringify(todoItems));
+
+// FUNCTION SECTION
+function addToDoList() {
+  var li = document.createElement("li");
+  var inputCheckbox = document.createElement("input");
+  var label = document.createElement("label");
+  var h4 = document.createElement("h4");
+  var img = document.createElement("img");
+
+  h4.textContent = getTodoInput.value;
+  inputCheckbox.setAttribute("type", "checkbox");
+  img.setAttribute("src", "images/icon-cross.svg");
+  img.setAttribute("alt", "icon-cross");
+
+  li.appendChild(inputCheckbox);
+  li.appendChild(label);
+  li.appendChild(h4);
+  li.appendChild(img);
+
+  todoListUl.appendChild(li);
+
+  label.addEventListener("click", (e) => {
+    const crossedText = e.target.nextElementSibling;
+    e.target.classList.toggle("checked");
+    crossedText.classList.toggle("underline");
+  });
 }
-  
-function getLists() {
-    const todoItems = JSON.parse(localStorage.getItem("todoListItems"));
-    if (todoItems && todoItems.length > 0) {
-      todoItems.forEach((item) => {
-        var li = document.createElement("li");
-        var checkBoxInput = document.createElement("input");
-        var p = document.createElement("p");
-        var label = document.createElement("label");
-        checkBoxInput.setAttribute("type", "checkbox");
-        checkBoxInput.checked = item.checked;
-        p.textContent = item.text;
-        li.appendChild(checkBoxInput);
-        li.appendChild(label);
-        li.appendChild(p);
-        todolistContainer.appendChild(li);
-      });
-    }
-}
-  
-getLists();

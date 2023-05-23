@@ -15,7 +15,7 @@ body{
 
 .todo-container{
     margin: 0 auto;
-    width: 450px;
+    width: 550px;
     transform: translateY(-220px);
 }
 
@@ -125,6 +125,7 @@ body{
 
 
 .todo-footer-container{
+    font-size: 17px;
     display: flex;
     justify-content: space-between;
     gap: 13px;

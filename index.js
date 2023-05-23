@@ -2,6 +2,9 @@ const getTodoInput = document.querySelector("#todo-input");
 const addToTodoBtn = document.querySelector("#addTodo");
 const completedBtn = Array.from(document.querySelectorAll(".todo-list-content ul li label"));
 const itemsLeft = document.querySelector(".todo-footer a");
+const all = document.querySelector(".todo-footer-container a:nth-child(1)");
+const active = document.querySelector(".todo-footer-container a:nth-child(2)");
+const completed = document.querySelector(".todo-footer-container a:nth-child(3)");
 const todoListUl = document.querySelector("ul");
 
 addToTodoBtn.addEventListener("click", () => {
@@ -78,6 +81,28 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   updateItemsLeft();
+
+  // Add event listener to the "Completed" element
+  const completedElement = document.querySelector(".todo-footer-container a:nth-child(3)");
+  if (completedElement) {
+    completedElement.addEventListener("click", showCompletedItems);
+  }
+
+  // Add event listener to the "All" element
+  const allElement = document.querySelector(".todo-footer-container a:nth-child(1)");
+  if(allElement){
+    allElement.addEventListener("click", showAllItems);
+  }
+
+  // Add event listener to the "Active" element
+  const activeElement = document.querySelector(".todo-footer-container a:nth-child(2)");
+  if(activeElement){
+    activeElement.addEventListener("click", showActiveItems)
+  }
+
+  
+  const clearElement = document.querySelector(".clear-completed");
+  clearElement.addEventListener("click", clearCompletedItems)
 });
 
 function addToDoList() {
@@ -136,4 +161,46 @@ function updateItemsLeft() {
   if (itemsLeftElement) {
     itemsLeftElement.textContent = `${itemsLeft.toString()} items left`;
   }
+}
+
+function showCompletedItems() {
+  const todoItems = Array.from(document.querySelectorAll(".todo-list-content ul li"));
+  todoItems.forEach((item)=>{
+    const isChecked = item.querySelector("label.checked")
+    if(isChecked){
+      item.style.display = "flex"
+    }else{
+      item.style.display = "none"
+    }
+  });
+}
+
+function showActiveItems(){
+  const todoItems = Array.from(document.querySelectorAll(".todo-list-content ul li"));
+  todoItems.forEach((item)=>{
+    const isChecked = item.querySelector("label.checked");
+    if(isChecked){
+      item.style.display = "none";
+    }else{
+      item.style.display = "flex";
+    }
+  });
+}
+
+function showAllItems(){
+  const todoItems = Array.from(document.querySelectorAll(".todo-list-content ul li"));
+  todoItems.forEach((item)=>{
+    item.style.display = "flex";
+  });
+}
+
+function clearCompletedItems(){
+  const todoItems = Array.from(document.querySelectorAll(".todo-list-content ul li"));
+  todoItems.forEach((item)=>{
+    const isChecked = item.querySelector("label.checked");
+    if(isChecked){
+      item.remove();
+      updateLocalStorage();
+    }
+  });
 }

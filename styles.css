@@ -140,6 +140,11 @@ body{
     color: black;
 }
 
+footer{
+    margin-top: 90px;
+    display: flex;
+    gap: 10px;
+}
 @media screen and (max-width: 530px) {
     .bg-img{
         background-image: url(images/bg-mobile-light.jpg);

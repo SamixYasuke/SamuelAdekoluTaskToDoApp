@@ -140,6 +140,10 @@ body{
     color: black;
 }
 
+.todo-footer a:focus{
+    color: hsl(220, 98%, 61%)
+}
+
 footer{
     margin-top: 90px;
     display: flex;
